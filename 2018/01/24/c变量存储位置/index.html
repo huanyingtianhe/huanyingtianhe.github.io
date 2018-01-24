@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>CSAPP笔记——虚拟内存 | 幻影</title>
+  <title>c变量存储位置 | 幻影</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="虚拟内存的作用 内存作为磁盘的高速缓冲 提供了一致的进程地址空间，简化内存管理 方便内存保护(很方便地通过页表数据进行保护)">
-<meta name="keywords" content="csapp">
+  <meta name="description" content="只读数据存储在.rodata(常量，字符串常量) 已经初始化的全局变量和静态变量存储在.data 未初始化或者初始化为0的全局变量和静态变量存储在.bss">
+<meta name="keywords" content="c&#x2F;c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSAPP笔记——虚拟内存">
-<meta property="og:url" content="http://yoursite.com/2018/01/21/CSAPP笔记——虚拟内存-1/index.html">
+<meta property="og:title" content="c变量存储位置">
+<meta property="og:url" content="http://yoursite.com/2018/01/24/c变量存储位置/index.html">
 <meta property="og:site_name" content="幻影">
-<meta property="og:description" content="虚拟内存的作用 内存作为磁盘的高速缓冲 提供了一致的进程地址空间，简化内存管理 方便内存保护(很方便地通过页表数据进行保护)">
+<meta property="og:description" content="只读数据存储在.rodata(常量，字符串常量) 已经初始化的全局变量和静态变量存储在.data 未初始化或者初始化为0的全局变量和静态变量存储在.bss">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-22T14:30:16.616Z">
+<meta property="og:updated_time" content="2018-01-24T15:44:02.817Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSAPP笔记——虚拟内存">
-<meta name="twitter:description" content="虚拟内存的作用 内存作为磁盘的高速缓冲 提供了一致的进程地址空间，简化内存管理 方便内存保护(很方便地通过页表数据进行保护)">
+<meta name="twitter:title" content="c变量存储位置">
+<meta name="twitter:description" content="只读数据存储在.rodata(常量，字符串常量) 已经初始化的全局变量和静态变量存储在.data 未初始化或者初始化为0的全局变量和静态变量存储在.bss">
   
     <link rel="alternative" href="/atom.xml" title="幻影" type="application/atom+xml">
   
@@ -173,42 +173,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CSAPP笔记——虚拟内存-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-c变量存储位置" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CSAPP笔记——虚拟内存
+      c变量存储位置
     </h1>
   
 
         
-        <a href="/2018/01/21/CSAPP笔记——虚拟内存-1/" class="archive-article-date">
-  	<time datetime="2018-01-20T16:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-21</time>
+        <a href="/2018/01/24/c变量存储位置/" class="archive-article-date">
+  	<time datetime="2018-01-24T15:38:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="虚拟内存的作用"><a href="#虚拟内存的作用" class="headerlink" title="虚拟内存的作用"></a>虚拟内存的作用</h5><ol>
-<li>内存作为磁盘的高速缓冲</li>
-<li>提供了一致的进程地址空间，简化内存管理</li>
-<li>方便内存保护(很方便地通过页表数据进行保护)</li>
+        <ol>
+<li>只读数据存储在.rodata(常量，字符串常量)</li>
+<li>已经初始化的全局变量和静态变量存储在.data</li>
+<li>未初始化或者初始化为0的全局变量和静态变量存储在.bss</li>
 </ol>
-<a id="more"></a>
-<h5 id="地址翻译"><a href="#地址翻译" class="headerlink" title="地址翻译"></a>地址翻译</h5><ol>
-<li>MMU负责地址翻译</li>
-<li>tlb-&gt;pte得到物理页号，物理页号和虚拟地址中的物理页偏移量作为最终的物理地址</li>
-</ol>
-<h5 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h5><ol>
-<li>内存块的组织形式：<br> 隐式空闲链表（head,foot），<br> 显式空闲链表（节省2的时间）</li>
-<li>空闲块快搜索算法</li>
-<li>块的合并</li>
-</ol>
-<h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p>1.有内部碎片的时候如何遍历内存块？</p>
 
       
 
@@ -253,13 +242,24 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">csapp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">c/c++</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/programming//" class="article-tag-list-link color2">programming</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -309,7 +309,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/21/CSAPP笔记——虚拟内存-1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/24/c变量存储位置/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -323,18 +323,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/22/c-中的static变量和线程安全/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          c++ static 变量和线程安全
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/01/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2018/01/22/c-中的static变量和线程安全/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">c++ static 变量和线程安全</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -361,7 +352,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#虚拟内存的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟内存的作用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#地址翻译"><span class="toc-number">2.</span> <span class="toc-text">地址翻译</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#动态内存分配"><span class="toc-number">3.</span> <span class="toc-text">动态内存分配</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#问题"><span class="toc-number">4.</span> <span class="toc-text">问题</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -386,7 +377,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://yoursite.com/2018/01/21/CSAPP笔记——虚拟内存-1/",
+  id: "http://yoursite.com/2018/01/24/c变量存储位置/",
   owner: 'huanyingtianhe',
   repo: 'huanyingtianhe.github.io',
   oauth: {
